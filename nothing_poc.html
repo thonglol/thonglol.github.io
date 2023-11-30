@@ -393,7 +393,7 @@ function webviewAnalyzerZaloInit() {
                     var data = msg;
                     // data = atob(data);
                     // data = decodeURIComponent(data);
-                    alert(JSON.stringify(data));
+                    //alert(JSON.stringify(data));
                     var toUrl = `${window.location.protocol}//${window.location.hostname}${window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'))}/infoparse.html?exfilData=${encodeURIComponent(JSON.stringify(data))}`;
                     var token = webviewAnalyzerZaloGetJsToken();
                     ZaloJavaScriptInterface.openLink(token, toUrl);
